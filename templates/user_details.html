@@ -4,6 +4,8 @@
 {% block title %}User Details{% endblock %}
 
 {% block body %}
-
-    
+<h1>{{user.first_name}} {{user.last_name}}</h1>
+<img src={{user.img_url}}>
+<br>
+<a href='/'>All Users</a>
 {% endblock %}
