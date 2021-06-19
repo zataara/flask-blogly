@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db
+from models import db, connect_db, User
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly'
@@ -17,4 +17,5 @@ db.create_all()
 @app.route('/')
 def home_page():
     '''Show the home page'''
-    return render_template('index.html')
+    users = User.query.all()
+    return render_template('index.html', users=users)
