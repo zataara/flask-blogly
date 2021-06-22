@@ -42,3 +42,36 @@ def add_user():
     db.session.commit()
 
     return redirect('/')
+
+
+@app.route('/<int:user_id>/edit')
+def edit_user(user_id):
+    '''Show a form to edit the current user'''
+    user = User.query.get_or_404(user_id)
+    return render_template('edit_user.html', user=user)
+
+
+@app.route('/<int:user_id>/edit', methods=['POST'])
+def update_user(user_id):
+    
+    user = User.query.get_or_404(user_id)
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    img_url = request.form['img_url'] or None
+
+    
+    db.session.add(user)
+    db.session.commit()
+
+    return redirect('/')
+
+
+@app.route('/<int:user_id>/delete', methods=["POST"])
+def users_destroy(user_id):
+    """Handle form submission for deleting an existing user"""
+
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+
+    return redirect("/")

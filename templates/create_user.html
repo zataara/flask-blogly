@@ -5,12 +5,20 @@
 {% block body %}
     <h1>Create A New User</h1>
     <form method='POST'>
-        <labeL for='first_name'>First Name</labeL>
-        <input type='text' name='first_name' placeholder='Enter a first name' min='1' max='30'>
-        <labeL for='last_name'>Last Name</labeL>
-        <input type='text' name='last_name' placeholder='Enter a last name' min='1' max='30'>
-        <labeL for='img_url'>Image URL</labeL>
-        <input type='text' name='img_url' placeholder='Provide an image of this user'>
+        <div>
+            <labeL for='first_name'>First Name</labeL>
+            <input type='text' name='first_name' placeholder='Enter a first name' min='1' max='30'>
+        </div>
+        <br>
+        <div>
+            <labeL for='last_name'>Last Name</labeL>
+            <input type='text' name='last_name' placeholder='Enter a last name' min='1' max='30'>
+        </div>
+        <br>
+        <div>
+            <labeL for='img_url'>Image URL</labeL>
+            <input type='text' name='img_url' placeholder='Provide an image of this user'>
+        </div>
         <a href='/create'><button type='submit'>Add</button></a>
     </form>
 
