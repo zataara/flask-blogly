@@ -1,0 +1,1 @@
+Flask Blogly is project that focuses primarily on the use of SQLAlchemy to build a simple full stack application. 
