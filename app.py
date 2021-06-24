@@ -14,23 +14,28 @@ debug = DebugToolbarExtension(app)
 connect_db(app)
 db.create_all()
 
+
 @app.route('/')
-def home_page():
-    '''Show the home page'''
-    users = User.query.all()
-    return render_template('index.html', users=users)
-
-@app.route('/<int:user_id>')
-def show_user(user_id):
-    user = User.query.get_or_404(user_id)
-    return render_template('user_details.html', user=user)
+def root():
+    '''Homepage redirects to list of all users'''
+    return redirect('/users')
 
 
-@app.route('/new', methods=["GET"])
+@app.route('/users')
+def users_index():
+    '''Displays a page with all users on blogly'''
+    
+    users = User.query.order_by(User.last_name, User.first_name).all()
+    
+    return render_template('users/index.html', users=users)
+
+
+@app.route('/users/new', methods=["GET"])
 def show_new_user_form():
-    return render_template('create_user.html')
+    return render_template('users/new.html')
 
-@app.route('/new', methods=['POST'])
+
+@app.route('/users/new', methods=['POST'])
 def add_user():
     '''Handle the form submission for creating a new user'''
     first_name = request.form['first_name']
@@ -41,17 +46,23 @@ def add_user():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect('/')
+    return redirect('/users')
 
 
-@app.route('/<int:user_id>/edit')
+@app.route('/users/<int:user_id>')
+def show_user(user_id):
+    user = User.query.get_or_404(user_id)
+    return render_template('users/show.html', user=user)
+
+
+@app.route('/users/<int:user_id>/edit')
 def edit_user(user_id):
     '''Show a form to edit the current user'''
     user = User.query.get_or_404(user_id)
-    return render_template('edit_user.html', user=user)
+    return render_template('users/edit.html', user=user)
 
 
-@app.route('/<int:user_id>/edit', methods=['POST'])
+@app.route('/users/<int:user_id>/edit', methods=['POST'])
 def update_user(user_id):
     
     user = User.query.get_or_404(user_id)
@@ -63,7 +74,7 @@ def update_user(user_id):
     db.session.add(user)
     db.session.commit()
 
-    return redirect('/')
+    return redirect('/users')
 
 
 @app.route('/<int:user_id>/delete', methods=["POST"])
@@ -74,4 +85,4 @@ def users_destroy(user_id):
     db.session.delete(user)
     db.session.commit()
 
-    return redirect("/")
+    return redirect("/users")

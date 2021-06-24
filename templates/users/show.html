@@ -9,21 +9,14 @@
 <br>
 
 <form>
-    <button formaction="/{{ user.id }}/edit"
+    <button formaction="/users/{{ user.id }}/edit"
             formmethod="GET">Edit
     </button>
-    <button formaction="/{{ user.id }}/delete"
+    <button formaction="/users/{{ user.id }}/delete"
             formmethod="POST">Delete
     </button>
   </form>
 <br>
-<h2>Posts</h2>
-    <ul>
-		{% for post in posts $}
-		<li>{{user.post.title}}</li>
-		{% endfor %}
-	</ul>
-	
 
 
 
