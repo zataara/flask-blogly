@@ -8,6 +8,7 @@
 <img src={{user.img_url}}>
 <br>
 
+<div>
 <form>
     <button formaction="/users/{{ user.id }}/edit"
             formmethod="GET">Edit
@@ -16,11 +17,19 @@
             formmethod="POST">Delete
     </button>
   </form>
+</div>
 <br>
+<h2>Posts</h2>
+	<ul>
+		{% for post in user.posts %}
+                <li><a href="/posts/{{post.id}}">{{post.title}}</a>
+                <small>on {{post.friendly_date}}</small></li>
+                
+		{% endfor %}
+        </ul>
 
 
+<button><a href='/users/{{user.id}}/posts/new'>Add Post</a></button>
 
-
-
-<a href='/'>All Users</a>
+<button><a href='/'>All Users</a></button>
 {% endblock %}
