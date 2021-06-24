@@ -16,7 +16,18 @@
             formmethod="POST">Delete
     </button>
   </form>
-
 <br>
+<h2>Posts</h2>
+    <ul>
+		{% for post in posts $}
+		<li>{{user.post.title}}</li>
+		{% endfor %}
+	</ul>
+	
+
+
+
+
+
 <a href='/'>All Users</a>
 {% endblock %}
