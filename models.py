@@ -19,7 +19,7 @@ class User(db.Model):
 
     id = db.Column(db.Integer,
                     primary_key=True,
-                    autoincrement = True)
+                    autoincrement=True)
     first_name = db.Column(db.String(30),
                             nullable=False)
     last_name = db.Column(db.String(30),
@@ -27,5 +27,28 @@ class User(db.Model):
     img_url = db.Column(db.String)
 
 
+class Post(db.Model):
+    '''Post model'''
 
+    __tablename__ = 'posts'
+
+    def __repr__(self):
+        '''Show additional info about posts for debuging purposes'''
+        u = self
+
+    id = db.Column(db.Integer,
+                    primary_key=True,
+                    autoincrement=True)
+    title = db.Column(db.String(30),
+                        nullable=False)
+    content = db.Column(db.Text,
+                        nullable=False)
+    created_at = db.Column(db.DateTime,
+                        nullable=False)
+    user_id = db.Column(db.Text,
+                        db.ForeignKey('user.id'))
+    user = db.relationship('User', backref='posts')
+
+
+    
 
