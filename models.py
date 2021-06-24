@@ -26,6 +26,11 @@ class User(db.Model):
                             nullable=False)
     img_url = db.Column(db.String)
 
+    @property
+    def full_name(self):
+        '''Returns the full name of the user'''
+        return f"{self.first_name} {self.last_name}"
+
 
 class Post(db.Model):
     '''Post model'''
@@ -39,15 +44,23 @@ class Post(db.Model):
     id = db.Column(db.Integer,
                     primary_key=True,
                     autoincrement=True)
-    title = db.Column(db.String(30),
+    title = db.Column(db.Text,
                         nullable=False)
     content = db.Column(db.Text,
                         nullable=False)
     created_at = db.Column(db.DateTime,
-                        nullable=False)
+                        nullable=False,
+                        default=datetime.datetime.now)
     user_id = db.Column(db.Integer,
-                        db.ForeignKey('users.id'))
+                        db.ForeignKey('users.id'),
+                        nullable = False)
     user = db.relationship('User', backref='posts')
+
+    @property
+    def friendly_date(self):
+        '''return a nicely formatted date for human reading'''
+        
+        return self.created_at.strftime('%a %b %-d %Y, %-I:%M %p')
 
 
     
