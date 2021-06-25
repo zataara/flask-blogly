@@ -41,6 +41,7 @@ class Post(db.Model):
     def __repr__(self):
         '''Show additional info about posts for debuging purposes'''
         u = self
+        return f'<User {u.id} {u.first_name} {u.last_name} {u.img_url}'
 
     id = db.Column(db.Integer,
                     primary_key=True,
@@ -64,5 +65,36 @@ class Post(db.Model):
         return self.created_at.strftime('%a %b %-d %Y, %-I:%M %p')
 
 
+class  Tag(db.Model):
+    '''Tag model'''
     
+    __tablename__ = 'tags'
+
+    def __repr__(self):
+        t = self
+        return f'<Tag {t.id} {t.name}'
+
+    id = db.Column(db.Integer,
+                    primary_key=True,
+                    autoincrement=True)
+    name = db.Column(db.Text,
+                    nullable=False)
+
+class PostTag(db.Model):
+    '''Post and Tags table intersection'''
+
+    __tablename__ = 'posttags'
+
+    def __repr__(self):
+        pt = self
+        return f'<PostTag {pt.post_id} {pt.tag_id} >'
+    
+    post_id = db.Column(db.Integer,
+                        db.ForeignKey('post.id'),
+                        primary_key=True)
+
+    tag_id = db.Column(db.Integer,
+                        db.ForeignKey('tag.id'),
+                        primary_key=True)
+
 
