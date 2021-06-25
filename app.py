@@ -155,3 +155,42 @@ def posts_destroy(post_id):
 
     return redirect(f"/users/{post.user_id}")
 
+
+##Tag Routes
+
+@app.route('/tags')
+def show_tags():
+    
+    tags = Tags.query.all()
+    
+    return render_template('/tags/show.html', tags=tags)
+
+@app.route('/tags/<int:tag_id>')
+def show_tag(tag_id):
+
+    return
+
+@app.route('/tags/new')
+def new_tag_form():
+
+    return
+
+@app.route('/tags/new', methods=['POST'])
+def add_new_tag():
+
+    return redirect('/tags')
+
+@app.route('/tags/<int:tag_id>/edit')
+def edit_tag_form(tag_id):
+
+    return
+
+@app.route('/tags/<int:tag_id>/edit', methods=['POST'])
+def update_tag(tag_id):
+
+    return
+@app.route('/tags/<int:tag_id>/delete', methods=['POST'])
+def delete_tag(tag_id):
+
+    return
+
