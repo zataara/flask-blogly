@@ -60,7 +60,7 @@ class Post(db.Model):
 
     tags = db.relationship('Tag',
                             secondary='posttags',
-                            backreference='posts')
+                            backref='posts')
 
     @property
     def friendly_date(self):
@@ -94,11 +94,11 @@ class PostTag(db.Model):
         return f'<PostTag {pt.post_id} {pt.tag_id} >'
     
     post_id = db.Column(db.Integer,
-                        db.ForeignKey('post.id'),
+                        db.ForeignKey('posts.id'),
                         primary_key=True)
 
     tag_id = db.Column(db.Integer,
-                        db.ForeignKey('tag.id'),
+                        db.ForeignKey('tags.id'),
                         primary_key=True)
 
 
