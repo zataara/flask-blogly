@@ -58,6 +58,10 @@ class Post(db.Model):
                         nullable = False)
     user = db.relationship('User', backref='posts')
 
+    tags = db.relationship('Tag',
+                            secondary='posttags',
+                            backreference='posts')
+
     @property
     def friendly_date(self):
         '''return a nicely formatted date for human reading'''
