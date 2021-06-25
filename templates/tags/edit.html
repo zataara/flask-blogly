@@ -5,15 +5,14 @@
 
 {% block body %}
 
-<h1>Tags</h1>
-    <ul>
-        {% for tag in tags %}
-        <li><a href='/tags/{{tag.id}}'>{{tag.name}}</a></li>
-        {% endfor %}
-    </ul>    
+<h1>Edit {{tag.name}}</h1>
+    
 
 <form>
-    <button formaction='/tags/new' formmethod='GET'>Add Tag</button>
+    <label for='Name'>Name</label>
+    <input type='text' name='name' value='{{tag.name}}'>
+    <button formaction='/tags/{{tag.id}}' formmethod='GET'>Cancel</button>
+    <button type='submit' formaction='/tags/{{tag.id}}/edit' formmethod='POST'>Update</button>
     
 </form> 
 <br>
