@@ -163,20 +163,27 @@ def show_tags():
     
     tags = Tag.query.all()
     
-    return render_template('/tags/show.html', tags=tags)
+    return render_template('/tags/index.html', tags=tags)
 
 @app.route('/tags/<int:tag_id>')
 def show_tag(tag_id):
-
-    return
+    tag = Tag.query.get_or_404(tag_id)
+    
+    return render_template('tags/show.html', tag=tag)
 
 @app.route('/tags/new')
 def new_tag_form():
 
-    return
+    return render_template('/tags/new.html')
+
 
 @app.route('/tags/new', methods=['POST'])
 def add_new_tag():
+
+    new_tag = Tag(name = request.form['name'])
+    db.session.add(new_tag)
+    db.session.commit()
+    flash(f"Tag created!")
 
     return redirect('/tags')
 

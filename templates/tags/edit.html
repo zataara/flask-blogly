@@ -5,16 +5,15 @@
 
 {% block body %}
 
-<h1>{{tag.name}}</h1>
+<h1>Tags</h1>
     <ul>
-        {% for post in tag.posts %}
-        <li><a href='/posts/{{post.id}}'>{{post.title}}</a></li>
+        {% for tag in tags %}
+        <li><a href='/tags/{{tag.id}}'>{{tag.name}}</a></li>
         {% endfor %}
     </ul>    
 
 <form>
     <button formaction='/tags/new' formmethod='GET'>Add Tag</button>
-    <button formaction='/tags' formmethod='GET'>All Tags</button>
     
 </form> 
 <br>

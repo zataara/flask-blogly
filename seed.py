@@ -1,6 +1,6 @@
 '''Seed file to make samaple data for Users Database'''
 
-from models import User, Post, db
+from models import User, Post, Tag, PostTag, db
 from app import app
 
 #Create all tables
@@ -56,5 +56,53 @@ db.session.add(post7)
 db.session.add(post8)
 db.session.add(post9)
 
+
+db.session.commit()
+
+#Create some sample tags
+
+tag1 = Tag(name='FirstPost')
+tag2 = Tag(name='SecondPost')
+tag3 = Tag(name='ThirdPost')
+tag4 = Tag(name='Sad')
+tag5 = Tag(name='Obsessed')
+tag6 = Tag(name='SayWhat')
+tag7 = Tag(name='Crazy')
+tag8 = Tag(name='WhyMe')
+tag9 = Tag(name='How?')
+
+db.session.add(tag1)
+db.session.add(tag2)
+db.session.add(tag3)
+db.session.add(tag4)
+db.session.add(tag5)
+db.session.add(tag6)
+db.session.add(tag7)
+db.session.add(tag8)
+db.session.add(tag9)
+
+db.session.commit()
+
+#Connect some tags to Posts
+
+posttag1 = PostTag(post_id=1, tag_id=1)
+posttag2 = PostTag(post_id=4, tag_id=1)
+posttag3 = PostTag(post_id=7, tag_id=1)
+posttag4 = PostTag(post_id=2, tag_id=2)
+posttag5 = PostTag(post_id=5, tag_id=2)
+posttag6 = PostTag(post_id=8, tag_id=2)
+posttag7 = PostTag(post_id=3, tag_id=3)
+posttag8 = PostTag(post_id=6, tag_id=3)
+posttag9 = PostTag(post_id=9, tag_id=3)
+
+db.session.add(posttag1)
+db.session.add(posttag2)
+db.session.add(posttag3)
+db.session.add(posttag4)
+db.session.add(posttag5)
+db.session.add(posttag6)
+db.session.add(posttag7)
+db.session.add(posttag8)
+db.session.add(posttag9)
 
 db.session.commit()
