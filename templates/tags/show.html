@@ -9,7 +9,7 @@
     <ul>
         {% for tag in tags %}
         <li><a href='/tags/{{tag.id}}'>{{tag}}</a></li>
-        {% end for %}
+        {% endfor %}
     </ul>    
 
 <form>
@@ -18,5 +18,5 @@
 </form> 
 <br>
 
-<button><a href='/users/{{post.user.id}}'>All Posts</a></button>
+
 {% endblock %}
