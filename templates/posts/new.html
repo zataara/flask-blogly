@@ -15,8 +15,17 @@
             <textarea type='text' name='content' min='1'></textarea>
         </div>
         <br>
+        <div>
+            <p><b>Tags:</b></p>
+            {% for tag in tags %}
+            <input type='checkbox' name='tags' value='{{tag.id}}'>
+            <label for='{{tag.id}}'>{{tag.name}}</label>
+            <br>
+            
+            {% endfor %}
+        </div>
         <a href='/'><button type='submit'>Cancel</button></a>
-        <a href='/create'><button type='submit'>Save</button></a>
+        <a href='/create'><button type='submit'>Add</button></a>
     </form>
 
     

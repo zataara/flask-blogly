@@ -15,6 +15,16 @@
             <input type='text' name='content' min='1' size = 100 value='{{post.content}}''>
         </div>
         <br>
+        <div>
+            <p><b>Tags:</b></p>
+            {% for tag in tags %}
+            <input type='checkbox' name='tags' value='{{tag.id}}'>
+            <label for='{{tag.id}}'>{{tag.name}}</label>
+            <br>
+            
+            {% endfor %}
+        </div>
+        <br>
         <a href='/users/{{post.user.id}}'><button type='submit'>Cancel</button></a>
         <a href='/posts/{{post.id}}/edit'><button type='submit'>Save</button></a>
     </form>
